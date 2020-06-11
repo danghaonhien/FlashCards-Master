@@ -1,90 +1,89 @@
-import React, { Component } from 'react';
-import { Field, reduxForm, SubmissionError } from 'redux-form';
-import { Form, Segment, Button } from 'semantic-ui-react';
-import { email, required } from 'redux-form-validators';
-import axios from 'axios';
-import { AUTH_USER } from '../../actions/types';
+import React, { Fragment, useState } from "react";
+import { Link, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import { signin } from "../../actions/auth/index";
+import {
+  Form,
+  Segment,
+  Button,
+  Header,
+  Message,
+  Grid,
+} from "semantic-ui-react";
+import PropTypes from "prop-types";
+function SignIn({ signin, authenticated }) {
+  const [formData, setFormData] = useState({ email: "", password: "" });
 
-class SignIn extends Component {
+  const { email, password } = formData;
+  const onChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+  const onSubmit = (e) => {
+    e.preventDefault();
+    signin({ email, password });
+  };
 
-  onSubmit = async (formValues, dispatch) => {
-    try {
-      const { data } = await axios.post('/api/auth/signin', formValues);
-      localStorage.setItem('token', data.token);
-      dispatch({ type: AUTH_USER, payload: data.token });
-      this.props.history.push('/counter');
-    } catch (e) {
-      throw new SubmissionError({
-        email: 'Please try again',
-        password: 'You entered a bad password',
-        _error: 'Login Failed'
-      });
-    }
+  //Redirect if logged in
+  if (authenticated) {
+    return <Redirect to='/dashboard' />;
   }
 
-  renderEmail = ({ input, meta }) => {
-    return (
-      <Form.Input
-        {...input}
-        error={ meta.touched && meta.error }
-        fluid
-        icon='user'
-        iconPosition='left'
-        autoComplete='off'
-        placeholder='Email Address'
-      />
-    );
-  }
-  renderPassword = ({ input, meta }) => {
-    return (
-      <Form.Input
-        {...input}
-        error={  meta.touched && meta.error }
-        fluid
-        type='password'
-        icon='lock'
-        placeholder='password'
-        autoComplete='off'
-        iconPosition='left'
-      />
-    );
-  }
-  render() {
-    const { invalid, submitting, submitFailed, handleSubmit } = this.props;
-    return (
-      <Form size='large' onSubmit={handleSubmit(this.onSubmit)}>
-        <Segment stacked>
-          <Field
-            name='email'
-            iscool='mannyiscool'
-            component={ this.renderEmail }
-            validate={
-              [
-                required({ msg: 'Email is required' }),
-                email({ msg: 'You must provide a valid email address' })
-              ]
-            }
-          />
-          <Field
-            name='password'
-            component={this.renderPassword}
-            validate={
-              [
-                required({ msg: 'You must provide a password' })
-              ]
-            }
-          />
-          <Button
-            content='Sign In'
-            color='teal'
-            fluid
-            size='large'
-            type='submit'
-            disabled={ submitting }
-          />
-        </Segment>
-      </Form>
-    );
-  }
+  return (
+    <Fragment>
+      <Grid
+        textAlign='center'
+        style={{ height: "100vh" }}
+        verticalAlign='middle'
+      >
+        <Grid.Column style={{ maxWidth: 700 }}>
+          <Header as='h2' color='teal' textAlign='center'>
+            <i className='fas fa-user'></i> Log-in to your account
+          </Header>
+          <Form size='large' onSubmit={(e) => onSubmit(e)}>
+            <Segment stacked>
+              <Form.Field>
+                <input
+                  type='email'
+                  placeholder='Email Address'
+                  name='email'
+                  value={email}
+                  onChange={(e) => onChange(e)}
+                  required
+                />
+              </Form.Field>
+              <Form.Field>
+                <input
+                  type='password'
+                  placeholder='Password'
+                  name='password'
+                  value={password}
+                  onChange={(e) => onChange(e)}
+                />
+              </Form.Field>
+              <Button
+                content='Sign In'
+                color='teal'
+                fluid
+                size='large'
+                type='submit'
+              />
+            </Segment>
+          </Form>
+          <Message>
+            Don't have an account? <Link to='/signup'>Sign Up</Link>
+          </Message>
+        </Grid.Column>
+      </Grid>
+    </Fragment>
+  );
 }
-export default reduxForm({ form: 'signin' })(SignIn);
+SignIn.propTypes = {
+  signin: PropTypes.func.isRequired,
+  authenticated: PropTypes.bool,
+};
+
+const mapStateToProps = (state) => ({
+  authenticated: state.auth.authenticated,
+});
+
+export default connect(mapStateToProps, { signin })(SignIn);
