@@ -1,23 +1,11 @@
 import { combineReducers } from "redux";
-import { reducer as formReducer } from "redux-form";
-import counterReducer from "./counterReducer";
-import todosReducer from "./todosReducer";
+// import { reducer as formReducer } from "redux-form";
 import authReducer from "./authReducer";
-
-import { ADD_TODO } from "../actions/types";
+import profileReducer from "./profileReducer";
+import alertReducer from "./alertReducer";
 
 export default combineReducers({
+  profile: profileReducer,
   auth: authReducer,
-  todos: todosReducer,
-  counter: counterReducer,
-  form: formReducer.plugin({
-    addTodo: (state, action) => {
-      switch (action.type) {
-        case ADD_TODO:
-          return undefined;
-        default:
-          return state;
-      }
-    },
-  }),
+  alert: alertReducer,
 });

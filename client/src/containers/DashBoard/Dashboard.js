@@ -1,0 +1,74 @@
+import React, { useEffect, Fragment } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { getCurrentProfile, getProfileById } from "../../actions/profile";
+import DashboardActions from "./DashboardActions";
+import Spinner from "../../components/Spinner/index";
+import ProfileBoard from "../../components/ProfileBoard";
+import { Link } from "react-router-dom";
+import { Button } from "semantic-ui-react";
+const Dashboard = ({
+  getProfileById,
+  getCurrentProfile,
+  auth: { user },
+  profile: { profile, loading },
+  match,
+}) => {
+  useEffect(
+    () => {
+      getProfileById(match.params.id);
+      getCurrentProfile();
+    },
+    [getCurrentProfile],
+    [getProfileById]
+  );
+
+  return loading && profile === null ? (
+    <Spinner />
+  ) : (
+    <Fragment>
+      <h1>Dashboard </h1>
+
+      {profile !== null ? (
+        <Fragment>
+          <Fragment>
+            <Button>
+              <Link to='#'>FlashCard</Link>
+            </Button>
+            <Button>
+              <Link to='#'>Take Quiz</Link>
+            </Button>
+
+            <DashboardActions />
+          </Fragment>
+          <br />
+          <Fragment>
+            <ProfileBoard profile={profile} />
+          </Fragment>
+        </Fragment>
+      ) : (
+        <Fragment>
+          {" "}
+          <p>You have not setup a profile, please add some info</p>
+          <Link to='/create-profile' className='btn btn-primary my-1'>
+            Create Profile
+          </Link>
+        </Fragment>
+      )}
+    </Fragment>
+  );
+};
+
+Dashboard.propTypes = {
+  auth: PropTypes.object.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired,
+  profile: PropTypes.object.isRequired,
+  getProfileById: PropTypes.func.isRequired,
+};
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  profile: state.profile,
+});
+export default connect(mapStateToProps, { getProfileById, getCurrentProfile })(
+  Dashboard
+);

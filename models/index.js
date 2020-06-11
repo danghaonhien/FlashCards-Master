@@ -1,7 +1,8 @@
-const Todo = require('./Todo');
-const User = require('./User');
-
+const User = require("./User");
+const Profile = require("./Profile");
+// const Question = require("./Question");
 module.exports = {
-  Todo,
   User,
+  Profile,
+  // Question,
 };

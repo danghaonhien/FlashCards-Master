@@ -1,104 +1,120 @@
-import React, { Component } from 'react';
-import { Field, reduxForm } from 'redux-form';
-import { Form, Segment, Button } from 'semantic-ui-react';
-import { email, length, required } from 'redux-form-validators';
-import axios from 'axios';
+import React, { Fragment, useState } from "react";
+import {
+  Form,
+  Segment,
+  Button,
+  Message,
+  Header,
+  Grid,
+} from "semantic-ui-react";
+import { Link, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import { signup } from "../../actions/auth";
+import { setAlert } from "../../actions/alert";
+import PropTypes from "prop-types";
 
-import { AUTH_USER, AUTH_USER_ERROR } from '../../actions/types';
+const SignUp = ({ setAlert, signup, authenticated }) => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    password2: "",
+  });
+  const { name, email, password, password2 } = formData;
 
-class SignUp extends Component {
-  onSubmit = async (formValues, dispatch) => {
-    try {
-      const { data } = await axios.post('/api/auth/signup', formValues);
-      localStorage.setItem('token', data.token);
-      dispatch({ type: AUTH_USER, payload: data.token });
-      this.props.history.push('/counter');
-    } catch (e) {
-      dispatch({ type: AUTH_USER_ERROR, payload: e });
+  const onChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    if (password !== password2) {
+      setAlert("Passwords do not match", "danger");
+    } else {
+      signup({ name, email, password });
     }
+  };
+
+  if (authenticated) {
+    return <Redirect to='/dashboard' />;
   }
+  return (
+    <Fragment>
+      <Grid
+        textAlign='center'
+        style={{ height: "100vh" }}
+        verticalAlign='middle'
+      >
+        <Grid.Column style={{ maxWidth: 700 }}>
+          <Header as='h2' color='teal' textAlign='center'>
+            <i className='fas fa-user'></i> Create your account
+          </Header>
 
-  renderEmail = ({ input, meta }) => {
-    return (
-      <Form.Input
-        {...input}
-        error={ meta.touched && meta.error }
-        fluid
-        icon='user'
-        iconPosition='left'
-        autoComplete='off'
-        placeholder='Email Address'
-      />
-    );
-  }
+          <Form size='large' onSubmit={(e) => onSubmit(e)}>
+            <Segment stacked>
+              <Form.Field>
+                <input
+                  placeholder='Name'
+                  name='name'
+                  value={name}
+                  onChange={(e) => onChange(e)}
+                />
+              </Form.Field>
+              <Form.Field>
+                <input
+                  placeholder='Email'
+                  name='email'
+                  value={email}
+                  onChange={(e) => onChange(e)}
+                  required
+                />
+              </Form.Field>
+              <Form.Field>
+                <input
+                  type='password'
+                  placeholder='Password'
+                  name='password'
+                  value={password}
+                  onChange={(e) => onChange(e)}
+                  minLength={6}
+                  required
+                />
+              </Form.Field>
+              <Form.Field>
+                <input
+                  type='password'
+                  placeholder='Confirm Password'
+                  name='password2'
+                  value={password2}
+                  onChange={(e) => onChange(e)}
+                  minLength={6}
+                  required
+                />
+              </Form.Field>
 
+              <Button
+                content='Sign up'
+                color='teal'
+                fluid
+                size='large'
+                type='submit'
+              />
+            </Segment>
+          </Form>
+          <Message>
+            Already have an account? <Link to='/signin'> Sign In</Link>
+          </Message>
+        </Grid.Column>
+      </Grid>
+    </Fragment>
+  );
+};
 
-  renderPassword = ({ input, meta }) => {
-    return (
-      <Form.Input
-        {...input}
-        error={  meta.touched && meta.error }
-        fluid
-        type='password'
-        icon='lock'
-        placeholder='password'
-        autoComplete='off'
-        iconPosition='left'
-      />
-    );
-  }
-
-  render() {
-    console.log("Inside of signup render", this.props);
-    const { handleSubmit, invalid, submitting, submitFailed } = this.props;
-    return (
-      <Form size='large' onSubmit={handleSubmit(this.onSubmit)}>
-        <Segment stacked>
-          <Field
-            name='email'
-            iscool='mannyiscool'
-            component={ this.renderEmail }
-            validate={
-              [
-                required({ msg: 'Email is required' }),
-                email({ msg: 'You must provide a valid email address' })
-              ]
-            }
-          />
-          <Field
-            name='password'
-            component={this.renderPassword}
-            validate={
-              [
-                required({ msg: 'You must provide a password' }),
-                length({ min: 6, msg: 'Your password must be at least 6 characters long' })
-              ]
-            }
-          />
-          <Button
-            content='Sign up'
-            color='teal'
-            fluid
-            size='large'
-            type='submit'
-            disabled={ invalid || submitting || submitFailed }
-          />
-        </Segment>
-      </Form>
-    );
-  }
-}
-
-
-const asyncValidate = async formValues => {
-  try {
-    const { data } = await axios.get(`/api/user/emails?email=${formValues.email}`);
-    if (data) {
-      throw new Error();
-    }
-  } catch (e) {
-    throw { email: 'Email already exists, please sign up with a different email' };
-  }
-}
-
-export default reduxForm({ form: 'signup', asyncValidate, asyncChangeFields: [ 'email' ] })(SignUp);
+SignUp.propTypes = {
+  setAlert: PropTypes.func.isRequired,
+  signup: PropTypes.func.isRequired,
+  authenticated: PropTypes.bool,
+};
+const mapStateToProps = (state) => ({
+  authenticated: state.auth.authenticated,
+});
+export default connect(mapStateToProps, { setAlert, signup })(SignUp);
