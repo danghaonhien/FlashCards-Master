@@ -1,8 +1,10 @@
 const User = require("./User");
 const Profile = require("./Profile");
-// const Question = require("./Question");
+const Questions = require("./Questions");
+const Score = require("./Score");
 module.exports = {
   User,
   Profile,
-  // Question,
+  Questions,
+  Score,
 };

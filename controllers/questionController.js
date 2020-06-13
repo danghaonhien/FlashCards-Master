@@ -8,13 +8,13 @@ module.exports = {
         .json({ error: "You must provide question and answer" });
     }
     try {
-      const newQuestion = await new Questions({
+      const newQusetion = await new Questions({
         question,
         answer,
         user: req.user._id,
       }).save();
       await req.user.save();
-      return res.status(200).json(newQuestion);
+      return res.status(200).json(newQusetion);
     } catch (e) {
       return res.status(403).json({ e });
     }

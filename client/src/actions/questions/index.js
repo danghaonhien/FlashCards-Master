@@ -12,6 +12,8 @@ export const getQuestions = () => async (dispatch) => {
     const { data } = await axios.get("/api/quiz", {
       headers: { authorization: localStorage.getItem("token") },
     });
+    console.log(data);
+
     dispatch({ type: GET_QUESTIONS, payload: data });
   } catch (e) {
     dispatch({

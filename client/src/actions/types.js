@@ -26,5 +26,6 @@ export const ADD_QUESTION_ERROR = "ADD_QUESTION_ERROR";
 // get all questions
 export const GET_QUESTIONS = "GET_QUESTIONS";
 export const GET_QUESTIONS_ERROR = "GET_QUESTIONS_ERROR";
+
 export const ADD_SCORE = " GET_SCORE";
 export const ADD_SCORE_ERROR = " GET_SCORE_ERROR";
