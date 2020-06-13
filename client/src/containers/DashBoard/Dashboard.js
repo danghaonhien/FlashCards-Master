@@ -6,7 +6,7 @@ import DashboardActions from "./DashboardActions";
 import Spinner from "../../components/Spinner/index";
 import ProfileBoard from "../../components/ProfileBoard";
 import { Link } from "react-router-dom";
-import { Button } from "semantic-ui-react";
+import { Button, Divider } from "semantic-ui-react";
 const Dashboard = ({
   getProfileById,
   getCurrentProfile,
@@ -33,15 +33,15 @@ const Dashboard = ({
         <Fragment>
           <Fragment>
             <Button>
-              <Link to='#'>FlashCard</Link>
+              <Link to='/option'>FlashCard</Link>
             </Button>
             <Button>
-              <Link to='#'>Take Quiz</Link>
+              <Link to='/quiz'>Take Quiz</Link>
             </Button>
 
             <DashboardActions />
           </Fragment>
-          <br />
+          <Divider section />
           <Fragment>
             <ProfileBoard profile={profile} />
           </Fragment>

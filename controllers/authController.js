@@ -2,9 +2,6 @@
 const jwt = require("jwt-simple");
 const { User } = require("../models");
 const { secret } = require("../config");
-const brcypt = require("bcryptjs");
-
-const { validationResult } = require("express-validator");
 function tokenForUser(user) {
   const timeStamp = new Date().getTime();
   return jwt.encode(

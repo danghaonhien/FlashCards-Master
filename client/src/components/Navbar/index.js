@@ -2,26 +2,30 @@ import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { signout } from "../../actions/auth";
+import { List } from "semantic-ui-react";
 import PropTypes from "prop-types";
 const Navbar = ({ auth: { authenticated, loading }, signout }) => {
   const authLinks = (
-    <ul>
-      <li>
+    <List bulleted horizontal link inverted relaxed>
+      <List.Item>
+        {" "}
         <Link to='/profiles'>Classroom</Link>
-      </li>
-      <li>
+      </List.Item>
+      <List.Item>
+        {" "}
         <Link to='/dashboard'>
           <i className='fas fa-user' />
           <span className='hide-sm'> Dashboard </span>
         </Link>
-      </li>
-      <li>
+      </List.Item>
+      <List.Item>
+        {" "}
         <Link to='/signin' onClick={signout}>
           <i className='fas fa-sign-out-alt' />
           <span className='hide-sm'> Sign Out </span>
         </Link>
-      </li>
-    </ul>
+      </List.Item>
+    </List>
   );
   const guestLinks = (
     <ul>

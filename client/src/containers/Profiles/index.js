@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import Spinner from "../../components/Spinner";
 import ProfileItem from "./ProfileItem";
 import { getProfiles } from "../../actions/profile/index";
+import { Divider } from "semantic-ui-react";
 const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
   useEffect(() => {
     getProfiles();
@@ -17,6 +18,7 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
         <Fragment>
           <h1>Classroom</h1>
           <p>Connect with classmates around the globe</p>
+          <Divider />
           <div className='profiles'>
             {profiles.length > 0 ? (
               profiles.map((profile) => (

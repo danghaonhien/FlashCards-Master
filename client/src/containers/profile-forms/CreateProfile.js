@@ -22,7 +22,7 @@ function CreateProfile({ createProfile, history }) {
   };
   return (
     <Fragment>
-      <Header as='h2' color='teal' textAlign='center'>
+      <Header as='h2' color='teal'>
         <i className='fas fa-user'></i>Create Your Profile
       </Header>
       <p className='lead'>

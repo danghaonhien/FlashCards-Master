@@ -37,12 +37,12 @@ function EditProfile({
   };
   return (
     <Fragment>
-      <Header as='h2' color='teal' textAlign='center'>
-        <i className='fas fa-user'></i>Create Your Profile
+      <Header as='h2' color='teal'>
+        <i className='fas fa-user'></i>Edit Your Profile
       </Header>
-      <p className='lead'>
-        <i className='fas fa-code-branch'></i> Add any school that you have
-        studied in the past
+      <p>
+        <i className='fas fa-code-branch'></i> Fill in any field to update your
+        information
       </p>
       <Form size='large' onSubmit={(e) => onSubmit(e)}>
         <Segment stacked>
