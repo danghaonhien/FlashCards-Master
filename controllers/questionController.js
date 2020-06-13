@@ -1,45 +1,49 @@
-// const { Question } = require("../models/index");
-// const { validationResult } = require("express-validator");
-// module.exports = {
-//   getCurrentQuestion: async (req, res) => {
-//     try {
-//       const question = await Question.findOne({
-//         user: req.user._id,
-//       }).populate("user", ["name "]);
-//       if (!question) {
-//         return res.status(420).json({ msg: "No more questions" });
-//       }
-//       res.json(question);
-//     } catch (err) {
-//       console.error(err.message);
-//       res.status(520).send("Server Error");
-//     }
-//   },
-//   //Create Question
-//   createQuestion: async (req, res) => {
-//     const errors = validationResult(req);
-//     if (!errors.isEmpty()) {
-//       return res.status(420).json({ errors: errors.array() });
-//     }
-//     const { content, answer, correctanswer, wronganswer } = req.body;
-//     const questionFields = { content, answer, correctanswer, wronganswer };
-//     questionFields.user = req.user._id;
-//     if (content) questionFields.content = content;
-//     if (answer) questionFields.answer = answer;
-//     questionFields.options = {};
-//     if (correctanswer) questionFields.options.correctanswer = correctanswer;
-//     if (wronganswer) questionFields.options.wronganswer = wronganswer;
-//     try {
-//       let question = await Question.findOne({ user: req.user._id });
-//       //Create
-//       question = new Question(questionFields);
-//       await question.save();
-//       res.json(question);
-//     } catch (err) {
-//       console.error(err.message);
-//       res.status(520).send("Server Error");
-//     }
-//   },
-//   //Compare Answer
-//   chosenAnswer: async (req, res) => {},
-// };
+const { User, Questions, Score } = require("../models/index");
+module.exports = {
+  addQuestion: async (req, res) => {
+    const { question, answer } = req.body;
+    if (!question || !answer) {
+      return res
+        .status(400)
+        .json({ error: "You must provide question and answer" });
+    }
+    try {
+      const newQuestion = await new Questions({
+        question,
+        answer,
+        user: req.user._id,
+      }).save();
+      await req.user.save();
+      return res.status(200).json(newQuestion);
+    } catch (e) {
+      return res.status(403).json({ e });
+    }
+  },
+  addScore: async (req, res) => {
+    let score = 0;
+    const questionIds = [];
+    for (let key in req.body) {
+      const questionId = key;
+      const userAnswer = req.body[key];
+      const checkAnswer = await Questions.findById(questionId);
+      if (!checkAnswer) {
+        return res.status(200).json({ error: "No questions found" });
+      }
+      if (checkAnswer.answer === userAnswer) {
+        console.log("yeeeeeeeeeeeee");
+        score = score + 20;
+      } else {
+        console.log("nooooooooooo");
+      }
+    }
+    console.log(score);
+    try {
+      const newScore = await new Score({ score, user: req.user._id }).save();
+      req.user.scores.push(newScore);
+      await req.user.save();
+      return res.status(200).json(newScore);
+    } catch (e) {
+      return res.status(403).json({ e });
+    }
+  },
+};

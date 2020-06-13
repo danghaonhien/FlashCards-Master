@@ -20,7 +20,10 @@ body {
   background-color: #fff;
   color: #333;
 }
-
+footer {
+  text-align: center;
+  font-weight: 600;
+}
 a {
   color: var(--primary-color);
   text-decoration: none;

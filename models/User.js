@@ -4,6 +4,12 @@ const bcrypt = require("bcryptjs");
 
 const { Schema, model } = mongoose;
 const UserSchema = new Schema({
+  scores: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Score",
+    },
+  ],
   name: {
     type: String,
     required: true,
@@ -26,6 +32,7 @@ const UserSchema = new Schema({
     type: Date,
     default: Date.now(),
   },
+
   googleId: { type: String },
   secret: { type: String },
 });
