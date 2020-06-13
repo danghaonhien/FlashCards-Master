@@ -10,6 +10,12 @@ const UserSchema = new Schema({
       ref: "Score",
     },
   ],
+  flashcards: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Flashcard",
+    },
+  ],
   name: {
     type: String,
     required: true,

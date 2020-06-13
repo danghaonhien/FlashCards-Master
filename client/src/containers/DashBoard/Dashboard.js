@@ -33,7 +33,7 @@ const Dashboard = ({
         <Fragment>
           <Fragment>
             <Button>
-              <Link to='#'>FlashCard</Link>
+              <Link to='/option'>FlashCard</Link>
             </Button>
             <Button>
               <Link to='/quiz'>Take Quiz</Link>
