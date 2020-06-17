@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { signout } from "../../actions/auth";
 import { List } from "semantic-ui-react";
+
 import PropTypes from "prop-types";
 const Navbar = ({ auth: { authenticated, loading }, signout }) => {
   const authLinks = (
@@ -28,18 +29,17 @@ const Navbar = ({ auth: { authenticated, loading }, signout }) => {
     </List>
   );
   const guestLinks = (
-    <ul>
-      <li>
+    <List bulleted horizontal link inverted relaxed>
+      <List.Item>
         <Link to='/profiles'>Classroom</Link>
-      </li>
-      <li>
-        {" "}
+      </List.Item>
+      <List.Item>
         <Link to='/signup'>Sign Up</Link>
-      </li>
-      <li>
+      </List.Item>
+      <List.Item>
         <Link to='/signin'>Sign In</Link>
-      </li>
-    </ul>
+      </List.Item>
+    </List>
   );
 
   return (

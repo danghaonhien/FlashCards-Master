@@ -38,7 +38,7 @@ module.exports = {
     }
     console.log(score);
     try {
-      const newScore = await new Score({ score, user: req.user._id }).save();
+      const newScore = await new Score({ scores, user: req.user._id }).save();
       req.user.scores.push(newScore);
       await req.user.save();
       return res.status(200).json(newScore);

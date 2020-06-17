@@ -6,13 +6,13 @@ import {
   ADD_SCORE,
   ADD_SCORE_ERROR,
 } from "../types";
+import { setAlert } from "../alert";
 import axios from "axios";
 export const getQuestions = () => async (dispatch) => {
   try {
     const { data } = await axios.get("/api/quiz", {
       headers: { authorization: localStorage.getItem("token") },
     });
-    console.log(data);
 
     dispatch({ type: GET_QUESTIONS, payload: data });
   } catch (e) {
@@ -26,6 +26,7 @@ export const addQuestion = () => async (dispatch) => {
   try {
     const { data } = await axios.post("/api/post");
     dispatch({ type: ADD_QUESTION, payload: data });
+    dispatch(setAlert("Question Added", "success"));
   } catch (e) {
     dispatch({ type: ADD_QUESTION_ERROR, payload: "Something went wrong" });
   }
