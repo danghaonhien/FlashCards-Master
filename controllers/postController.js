@@ -79,7 +79,7 @@ module.exports = {
 
     try {
       const user = await User.findById(req.user.id).select("-password");
-      const post = await Post.findById(req.params.id);
+      const post = await Post.findById(req.params._id);
       const newComment = {
         text: req.body.text,
         name: user.name,

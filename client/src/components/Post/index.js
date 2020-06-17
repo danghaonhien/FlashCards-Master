@@ -6,6 +6,7 @@ import { getPost } from "../../actions/post";
 import PostItem from "../Posts/PostItem";
 import CommentForm from "../Post/CommentForm";
 import CommentItem from "../Post/CommentItem";
+
 import { Link } from "react-router-dom";
 const Post = ({ getPost, post: { post, loading }, match }) => {
   useEffect(() => {
@@ -17,7 +18,7 @@ const Post = ({ getPost, post: { post, loading }, match }) => {
     <Fragment>
       <Link to='/profiles'>Back to Playground</Link>
       <PostItem post={post} showSinglePost={false} />
-      <CommentForm postId={post._id} />
+
       <CommentForm postId={post._id} />
       <div className='comments'>
         {post.comments.map((comment) => (
