@@ -67,7 +67,8 @@ const App = () => {
   );
 };
 
-function mapStateToProps(state) {
-  return { authenticated: state.auth.authenticated };
-}
-export default connect(mapStateToProps, null)(App);
+// function mapStateToProps(state) {
+//   return { authenticated: state.auth.authenticated };
+// }
+// export default connect(mapStateToProps, null)(App);
+export default App;
