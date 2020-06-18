@@ -27,8 +27,12 @@ export const ADD_QUESTION_ERROR = "ADD_QUESTION_ERROR";
 export const GET_QUESTIONS = "GET_QUESTIONS";
 export const GET_QUESTIONS_ERROR = "GET_QUESTIONS_ERROR";
 // score
-export const ADD_SCORE = " GET_SCORE";
-export const ADD_SCORE_ERROR = " GET_SCORE_ERROR";
+export const ADD_SCORE = "ADD_SCORE";
+export const ADD_SCORE_ERROR = "ADD_SCORE_ERROR";
+export const GET_SCORE = "GET_SCORE";
+export const GET_SCORE_ERROR = "GET_SCORE_ERROR";
+export const GET_ALL_SCORE = "GET_ALL_SCORE";
+export const GET_ALL_SCORE_ERROR = "GET_ALL_SCORE_ERROR";
 
 //Flashcard
 export const ADD_FLASHCARD = "ADD_FLASHCARD";

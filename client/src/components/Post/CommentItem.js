@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import Moment from "react-moment";
 import { deleteComment } from "../../actions/post";
+import { Icon, Button } from "semantic-ui-react";
 const CommentItem = ({
   postId,
   comment: { _id, text, name, user, date },
@@ -23,16 +24,13 @@ const CommentItem = ({
           Posted on <Moment format='YYYY/MM/DD'>{date}</Moment>
         </p>
         {!auth.loading && user === auth.user._id && (
-          <button
-            type='button'
-            className='btn btn-danger'
+          <Icon
+            name='close'
             onClick={(e) => deleteComment(postId, _id)}
-          >
-            <i className='fas fa-times'></i>
-          </button>
+            size='big'
+          />
         )}
       </div>
-      ;
     </div>
   );
 };

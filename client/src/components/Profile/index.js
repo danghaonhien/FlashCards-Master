@@ -5,6 +5,7 @@ import Spinner from "../Spinner";
 import { getProfileById } from "../../actions/profile";
 import ProfileBoard from "../ProfileBoard";
 import { Link } from "react-router-dom";
+import { Icon } from "semantic-ui-react";
 function Profile({
   getProfileById,
   profile: { profile, loading },
@@ -21,13 +22,20 @@ function Profile({
         <Spinner />
       ) : (
         <Fragment>
-          <Link to='/profiles'>Back to Profiles</Link>
-          {auth.authenticated &&
-            auth.loading === false &&
-            auth.user._id === profile.user._id && (
-              <Link to='/edit-profile'>Edit Profile</Link>
-            )}
-          <div>
+          <Link to='/profiles'>
+            <Icon name='arrow alternate circle left outline' size='big' />
+          </Link>
+
+          <div className='profileBox'>
+            {auth.authenticated &&
+              auth.loading === false &&
+              auth.user._id === profile.user._id && (
+                <Link to='/edit-profile'>
+                  {" "}
+                  <Icon name='user circle' /> Edit Profile
+                </Link>
+              )}
+
             <ProfileBoard profile={profile} />
           </div>
         </Fragment>

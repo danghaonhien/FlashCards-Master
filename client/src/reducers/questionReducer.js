@@ -5,6 +5,10 @@ import {
   ADD_QUESTION_ERROR,
   ADD_SCORE,
   ADD_SCORE_ERROR,
+  GET_SCORE_ERROR,
+  GET_SCORE,
+  GET_ALL_SCORE,
+  GET_ALL_SCORE_ERROR,
 } from "../actions/types";
 const INITIAL_STATE = {
   getAllQuestions: [],
@@ -13,8 +17,13 @@ const INITIAL_STATE = {
   addQuestionError: "",
   addAllScore: "",
   addAllScoreError: "",
+  getAllScore: "",
+  getAllScoreError: "",
+  scores: [],
+  scoresError: "",
 };
 export default function (state = INITIAL_STATE, action) {
+  console.log(action.type, action.payload);
   switch (action.type) {
     case GET_QUESTIONS:
       return {
@@ -29,9 +38,21 @@ export default function (state = INITIAL_STATE, action) {
     case ADD_QUESTION:
       return { ...state, addQuestions: action.payload, addQuestionError: "" };
     case ADD_SCORE:
-      return { ...state, getAllScore: action.payload, getAllScoreError: "" };
+      // console.log("im hit get questions Im the one that hit");
+      return { ...state, addAllScore: action.payload, getAllScoreError: "" };
     case ADD_SCORE_ERROR:
+      return { ...state, addAllScoreError: action.payload };
+    case GET_SCORE:
+      // console.log("Im hit in reducer");
+      return { ...state, getAllScore: action.payload, getAllScoreError: "" };
+    case GET_SCORE_ERROR:
       return { ...state, getAllScoreError: action.payload };
+    case GET_ALL_SCORE:
+      // console.log("im hit get questions");
+      return { ...state, Scores: action.payload, ScoresError: "" };
+    case GET_ALL_SCORE_ERROR:
+      // console.log("im hit get questions");
+      return { ...state, ScoresError: action.payload };
     default:
       return state;
   }

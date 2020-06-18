@@ -1,34 +1,31 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { Form, Button, Divider } from "semantic-ui-react";
 import { addComment } from "../../actions/post";
 function CommentForm({ postId, addComment }) {
   const [text, setText] = useState("");
   return (
-    <div className='post-form'>
-      <div className='bg-primary p'>
-        <h4>Leave a Comment...</h4>
-      </div>
-      <form
-        className='form my-1'
+    <Fragment>
+      <Divider />
+      <Form
         onSubmit={(e) => {
           e.preventDefault();
           addComment(postId, { text });
           setText("");
         }}
       >
-        <textarea
-          name='text'
-          cols='30'
-          rows='5'
-          placeholder='Your Comment Here...'
-          value={text}
+        <Form.TextArea
+          label='Comment'
+          placeholder='Leave a Comment'
+          content={text}
           onChange={(e) => setText(e.target.value)}
-          required
-        ></textarea>
-        <input type='submit' className='btn btn-dark my-1' value='Submit' />
-      </form>
-    </div>
+        />
+
+        <Button type='submit'>Submit</Button>
+      </Form>
+      <Divider />
+    </Fragment>
   );
 }
 

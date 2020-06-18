@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Moment from "react-moment";
 import { connect } from "react-redux";
 import { deletePost } from "../../actions/post";
-import { Button } from "semantic-ui-react";
+import { Button, Icon } from "semantic-ui-react";
 const PostItem = ({
   auth,
   deletePost,
@@ -34,13 +34,7 @@ const PostItem = ({
               </Link>
             </Button>{" "}
             {!auth.loading && user === auth.user._id && (
-              <button
-                type='button'
-                className='btn btn-danger'
-                onClick={(e) => deletePost(_id)}
-              >
-                <i className='fas fa-times'></i>
-              </button>
+              <Icon name='close' onClick={(e) => deletePost(_id)} size='big' />
             )}
           </Fragment>
         )}

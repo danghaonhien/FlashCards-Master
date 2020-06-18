@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { signout } from "../../actions/auth";
-import { List } from "semantic-ui-react";
+import { List, Icon } from "semantic-ui-react";
 
 import PropTypes from "prop-types";
 const Navbar = ({ auth: { authenticated, loading }, signout }) => {
@@ -10,19 +10,22 @@ const Navbar = ({ auth: { authenticated, loading }, signout }) => {
     <List bulleted horizontal link inverted relaxed>
       <List.Item>
         {" "}
-        <Link to='/profiles'>Classroom</Link>
+        <Link to='/profiles'>
+          {" "}
+          <Icon name='group' /> <span className='hide-sm'> Classroom </span>
+        </Link>
       </List.Item>
       <List.Item>
         {" "}
         <Link to='/dashboard'>
-          <i className='fas fa-user' />
+          <Icon name='user circle' />
           <span className='hide-sm'> Dashboard </span>
         </Link>
       </List.Item>
       <List.Item>
         {" "}
         <Link to='/signin' onClick={signout}>
-          <i className='fas fa-sign-out-alt' />
+          <Icon name='sign-out' />
           <span className='hide-sm'> Sign Out </span>
         </Link>
       </List.Item>
@@ -30,9 +33,6 @@ const Navbar = ({ auth: { authenticated, loading }, signout }) => {
   );
   const guestLinks = (
     <List bulleted horizontal link inverted relaxed>
-      <List.Item>
-        <Link to='/profiles'>Classroom</Link>
-      </List.Item>
       <List.Item>
         <Link to='/signup'>Sign Up</Link>
       </List.Item>

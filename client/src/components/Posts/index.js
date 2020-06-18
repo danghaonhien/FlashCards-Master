@@ -7,6 +7,7 @@ import Spinner from "../Spinner";
 import PostItem from "./PostItem.js";
 import PostForm from "./PostForm.js";
 import { Link } from "react-router-dom";
+import { Icon } from "semantic-ui-react";
 const Posts = ({ getPosts, post: { posts, loading } }) => {
   useEffect(() => {
     getPosts();
@@ -15,7 +16,10 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
     <Spinner />
   ) : (
     <Fragment>
-      <Link to='/profiles'>Back to Classroom</Link>
+      <Link to='/profiles'>
+        {" "}
+        <Icon name='arrow alternate circle left outline' size='big' />
+      </Link>
       <h1>Playground</h1>
       <Header>Let's Chat </Header>
       <PostForm />

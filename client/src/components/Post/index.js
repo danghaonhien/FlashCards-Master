@@ -6,7 +6,7 @@ import { getPost } from "../../actions/post";
 import PostItem from "../Posts/PostItem";
 import CommentForm from "../Post/CommentForm";
 import CommentItem from "../Post/CommentItem";
-
+import { Icon } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 const Post = ({ getPost, post: { post, loading }, match }) => {
   useEffect(() => {
@@ -16,7 +16,9 @@ const Post = ({ getPost, post: { post, loading }, match }) => {
     <Spinner />
   ) : (
     <Fragment>
-      <Link to='/profiles'>Back to Playground</Link>
+      <Link to='/profiles'>
+        <Icon name='arrow alternate circle left outline' size='big' />
+      </Link>
       <PostItem post={post} showSinglePost={false} />
 
       <CommentForm postId={post._id} />

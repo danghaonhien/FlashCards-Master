@@ -32,16 +32,33 @@ module.exports = {
       if (checkAnswer.answer === userAnswer) {
         console.log("yeeeeeeeeeeeee");
         score = score + 20;
+        console.log(score);
       } else {
         console.log("nooooooooooo");
       }
     }
-    console.log(score);
     try {
-      const newScore = await new Score({ scores, user: req.user._id }).save();
+      const newScore = await new Score({ score, user: req.user._id }).save();
       req.user.scores.push(newScore);
       await req.user.save();
       return res.status(200).json(newScore);
+    } catch (e) {
+      console.log(e);
+      return res.status(403).json({ e });
+    }
+  },
+  getScore: async (req, res) => {
+    try {
+      const scores = await Score.find({ user: req.user._id });
+      return res.json(scores.pop());
+    } catch (e) {
+      return res.status(403).json({ e });
+    }
+  },
+  getAllScore: async (req, res) => {
+    try {
+      const scores = await Score.find({ user: req.user._id });
+      return res.json(scores);
     } catch (e) {
       return res.status(403).json({ e });
     }

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { Pagination, Header, Button } from "semantic-ui-react";
+import { Pagination } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { compose } from "redux";
-import { Link } from "react-router-dom";
+
 import requireAuth from "../../../hoc/requireAuth";
 import {
   getUserFlashcards,
@@ -27,7 +27,7 @@ class HandleFlashcard extends Component {
   };
   render() {
     return (
-      <>
+      <div className='cardBox'>
         <div>
           <RenderFlashcard
             flashcards={this.props.flashcards.slice(
@@ -36,6 +36,9 @@ class HandleFlashcard extends Component {
             )}
             handleDelete={this.props.deleteFlashcardById}
           />
+        </div>
+
+        <div>
           {this.props.flashcards.length <= 1 ? null : (
             <Pagination
               totalPages={this.props.flashcards.length}
@@ -44,15 +47,7 @@ class HandleFlashcard extends Component {
             />
           )}
         </div>
-        <div>
-          <Button as={Link} to='/dashboard' color='teal'>
-            Go back
-          </Button>
-          <Button as={Link} to='/addflashcards' color='teal'>
-            Add Flashcard
-          </Button>
-        </div>
-      </>
+      </div>
     );
   }
 }
