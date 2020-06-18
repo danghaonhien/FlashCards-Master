@@ -16,7 +16,7 @@ const Dashboard = ({
 }) => {
   useEffect(
     () => {
-      getProfileById(match.params.id);
+      // getProfileById(match.params.id);
       getCurrentProfile();
     },
     [getCurrentProfile],
@@ -44,9 +44,9 @@ const Dashboard = ({
             <DashboardActions />
           </Fragment>
           <Divider section />
-          <Fragment>
+          {/* <Fragment>
             <ProfileBoard profile={profile} />
-          </Fragment>
+          </Fragment> */}
         </Fragment>
       ) : (
         <Fragment>
