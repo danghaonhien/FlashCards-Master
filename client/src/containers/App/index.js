@@ -24,10 +24,10 @@ import Flashcards from "../Flashcards";
 import HandleFlashcard from "../Flashcards/HandleFlashcards";
 import Option from "../Option";
 import { Sticky } from "semantic-ui-react";
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
 const App = () => {
-  if (localStorage.token) {
-    setAuthToken(localStorage.token);
-  }
   useEffect(() => {
     store.dispatch(loadUser());
   }, []);
