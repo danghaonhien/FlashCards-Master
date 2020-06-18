@@ -23,10 +23,10 @@ function SignIn({ signin, authenticated }) {
     signin({ email, password });
   };
 
-  //Redirect if logged in
-  // if (authenticated) {
-  //   return <Redirect to='/dashboard' />;
-  // }
+  // Redirect if logged in
+  if (authenticated) {
+    return <Redirect to='/dashboard' />;
+  }
 
   return (
     <Fragment>
@@ -66,8 +66,6 @@ function SignIn({ signin, authenticated }) {
                 fluid
                 size='large'
                 type='submit'
-                as={Link}
-                to='/dashboard'
               />
             </Segment>
           </Form>
