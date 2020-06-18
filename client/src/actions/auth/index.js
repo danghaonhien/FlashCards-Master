@@ -63,7 +63,6 @@ export const signin = ({ email, password }) => async (dispatch) => {
   const config = {
     headers: {
       "Content-Type": "application/json",
-      // authorization: localStorage.getItem("token"),
     },
   };
   const body = JSON.stringify({ email, password });

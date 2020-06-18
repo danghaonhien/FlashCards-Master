@@ -25,12 +25,13 @@ import HandleFlashcard from "../Flashcards/HandleFlashcards";
 import Option from "../Option";
 import { Sticky } from "semantic-ui-react";
 const App = () => {
-  useEffect(() => {
-    store.dispatch(loadUser());
-  }, []);
   if (localStorage.token) {
     setAuthToken(localStorage.token);
   }
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, []);
+
   return (
     <Fragment>
       <Sticky>
@@ -44,13 +45,13 @@ const App = () => {
         <Switch>
           <Route exact path='/signin' component={SignIn} />
           <Route exact path='/signup' component={SignUp} />
+          <PrivateRoute exact path='/dashboard/' component={DashBoard} />
           <Route exact path='/profiles' component={Profiles} />
           <Route exact path='/profile/:id' component={Profile} />
           <Route exact path='/quiz/' component={Quiz} />
           <Route exact path='/addflashcards' component={Flashcards} />
           <Route exact path='/flashcards' component={HandleFlashcard} />
           <Route exact path='/option' component={Option} />
-          <PrivateRoute exact path='/dashboard/' component={DashBoard} />
           <PrivateRoute exact path='/postquiz/' component={PostQuestions} />
           <PrivateRoute
             exact
