@@ -21,8 +21,6 @@ const store = createStore(
 );
 
 export default store;
-
-export default store;
 ReactDOM.render(
   <App />,
 
