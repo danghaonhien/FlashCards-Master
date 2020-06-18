@@ -5,7 +5,6 @@ import {
   SIGNIN_FAIL,
   USER_LOADED,
   AUTH_USER_ERROR,
-  // ACCOUNT_DELETED,
   SIGNOUT,
 } from "../actions/types";
 

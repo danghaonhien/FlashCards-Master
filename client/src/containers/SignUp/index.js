@@ -34,9 +34,9 @@ const SignUp = ({ setAlert, signup, authenticated }) => {
     }
   };
 
-  if (authenticated) {
-    return <Redirect to='/dashboard' />;
-  }
+  // if (authenticated) {
+  //   return <Redirect to='/dashboard' />;
+  // }
   return (
     <Fragment>
       <Grid
@@ -97,6 +97,8 @@ const SignUp = ({ setAlert, signup, authenticated }) => {
                 fluid
                 size='large'
                 type='submit'
+                as={Link}
+                to='/dashboard'
               />
             </Segment>
           </Form>
