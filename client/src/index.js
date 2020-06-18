@@ -8,7 +8,10 @@ import "./styles.css";
 import App from "./containers/App";
 // import { loadUser } from "./actions/auth";
 import reducers from "./reducers";
-
+import setAuthToken from "../../utils/setAuthToken";
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
 const composeEnhancers =
   window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({ trace: true }) || compose;
 // 1st param is our reducers
