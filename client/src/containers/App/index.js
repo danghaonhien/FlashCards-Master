@@ -28,10 +28,6 @@ import { Sticky } from "semantic-ui-react";
 //   setAuthToken(localStorage.token);
 // }
 const App = () => {
-  useEffect(() => {
-    store.dispatch(loadUser());
-  }, []);
-
   return (
     <Fragment>
       <Sticky>
