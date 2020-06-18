@@ -28,9 +28,9 @@ const App = () => {
   useEffect(() => {
     store.dispatch(loadUser());
   }, []);
-  // if (localStorage.token) {
-  //   setAuthToken(localStorage.token);
-  // }
+  if (localStorage.token) {
+    setAuthToken(localStorage.token);
+  }
   return (
     <Fragment>
       <Sticky>

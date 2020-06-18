@@ -16,8 +16,8 @@ const Dashboard = ({
 }) => {
   useEffect(
     () => {
-      getCurrentProfile();
       getProfileById(match.params.id);
+      getCurrentProfile();
     },
     [getCurrentProfile],
     [getProfileById]
