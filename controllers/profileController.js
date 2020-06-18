@@ -59,7 +59,7 @@ module.exports = {
   //Get all profiles.
   getAllProfiles: async (req, res) => {
     try {
-      const profiles = await Profile.find().populate("user", ["name"]);
+      const profiles = await Profile.find().populate("user", ["name", "score"]);
       res.json(profiles);
     } catch (err) {
       console.error(err.message);
@@ -71,7 +71,7 @@ module.exports = {
     try {
       const profile = await Profile.findOne({
         user: req.params.user_id,
-      }).populate("user", ["name"]);
+      }).populate("user", ["name", "score"]);
       if (!profile) return res.status(420).json({ msg: "Profile not found" });
       res.json(profile);
     } catch (err) {

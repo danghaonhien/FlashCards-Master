@@ -5,6 +5,7 @@ import profileReducer from "./profileReducer";
 import alertReducer from "./alertReducer";
 import questionReducer from "./questionReducer";
 import flashcardReducer from "./flashcardReducer";
+import postReducer from "./postReducer";
 import { ADD_FLASHCARD } from "../actions/types";
 export default combineReducers({
   profile: profileReducer,
@@ -12,6 +13,7 @@ export default combineReducers({
   alert: alertReducer,
   quiz: questionReducer,
   flashcards: flashcardReducer,
+  post: postReducer,
   form: formReducer.plugin({
     addFlashcard: (state, action) => {
       switch (action.type) {

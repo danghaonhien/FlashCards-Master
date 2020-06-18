@@ -8,19 +8,22 @@ import EditProfile from "../../containers/profile-forms/EditProfile";
 import Alert from "../../components/Alert";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import Posts from "../../components/Posts";
+import Post from "../../components/Post";
+import Profile from "../../components/Profile/";
 import SignIn from "../SignIn";
 import SignUp from "../SignUp";
 import Quiz from "../Quiz";
 import PostQuestions from "../PostQuestions";
 import PrivateRoute from "../../containers/routing/PrivateRoute";
 import Profiles from "../../containers/Profiles/index";
-import Profile from "../../components/Profile/";
 import { loadUser } from "../../actions/auth";
 import store from "../../index";
 import setAuthToken from "../../utils/setAuthToken";
 import Flashcards from "../Flashcards";
 import HandleFlashcard from "../Flashcards/HandleFlashcards";
 import Option from "../Option";
+import { Sticky } from "semantic-ui-react";
 const App = () => {
   useEffect(() => {
     store.dispatch(loadUser());
@@ -30,7 +33,11 @@ const App = () => {
   }
   return (
     <Fragment>
-      <Navbar />
+      <Sticky>
+        {" "}
+        <Navbar />
+      </Sticky>
+
       <Route exact path='/' component={Landing} />
       <section className='container'>
         <Alert />
@@ -44,7 +51,6 @@ const App = () => {
           <Route exact path='/flashcards' component={HandleFlashcard} />
           <Route exact path='/option' component={Option} />
           <PrivateRoute exact path='/dashboard/' component={DashBoard} />
-
           <PrivateRoute exact path='/postquiz/' component={PostQuestions} />
           <PrivateRoute
             exact
@@ -52,6 +58,8 @@ const App = () => {
             component={CreateProfile}
           />
           <PrivateRoute exact path='/edit-profile' component={EditProfile} />
+          <PrivateRoute exact path='/posts' component={Posts} />
+          <PrivateRoute exact path='/posts/:id' component={Post} />
         </Switch>
       </section>
       <Footer />

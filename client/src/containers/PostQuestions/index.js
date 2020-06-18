@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
-import { connect } from "react-redux";
 import { Header, Form, Segment, Button } from "semantic-ui-react";
 import { ADD_QUESTION, ADD_QUESTION_ERROR } from "../../actions/types";
 import { compose } from "redux";

@@ -3,6 +3,7 @@ import {
   GET_USER_FLASHCARDS_ERROR,
   DELETE_FLASHCARD_BY_ID_ERROR,
 } from "../types";
+import { setAlert } from "../alert";
 import axios from "axios";
 export const getUserFlashcards = () => async (dispatch) => {
   try {
@@ -27,6 +28,7 @@ export const deleteFlashcardById = (id) => async (dispatch) => {
       headers: { authorization: localStorage.getItem("token") },
     });
     dispatch({ type: GET_USER_FLASHCARDS, payload: data });
+    dispatch(setAlert("Card Removed", "danger"));
   } catch (e) {
     dispatch({ type: DELETE_FLASHCARD_BY_ID_ERROR, payload: e });
   }
