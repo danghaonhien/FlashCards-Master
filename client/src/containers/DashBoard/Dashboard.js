@@ -16,8 +16,8 @@ const Dashboard = ({
 }) => {
   useEffect(
     () => {
-      getProfileById(match.params.id);
       getCurrentProfile();
+      getProfileById(match.params.id);
     },
     [getCurrentProfile],
     [getProfileById]
@@ -28,6 +28,9 @@ const Dashboard = ({
   ) : (
     <Fragment>
       <h1>Dashboard </h1>
+      <p className='lead'>
+        <i className='fas fa-user' /> Welcome {user && user.name}
+      </p>
       {profile !== null ? (
         <Fragment>
           <Fragment>
