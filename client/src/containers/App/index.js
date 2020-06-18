@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect } from "react";
-import { Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Landing from "../../containers/Landing/index";
 import setAuthToken from "../../utils/setAuthToken";
 import Navbar from "../../components/Navbar";
@@ -16,19 +16,21 @@ const App = () => {
   }, []);
   return (
     <Provider store={store}>
-      <Fragment>
-        <Sticky>
-          {" "}
-          <Navbar />
-        </Sticky>
+      <Router>
+        <Fragment>
+          <Sticky>
+            {" "}
+            <Navbar />
+          </Sticky>
 
-        <Switch>
-          <Route exact path='/' component={Landing} />
-          <Route component={Routes} />
-        </Switch>
+          <Switch>
+            <Route exact path='/' component={Landing} />
+            <Route component={Routes} />
+          </Switch>
 
-        <Footer />
-      </Fragment>
+          <Footer />
+        </Fragment>
+      </Router>
     </Provider>
   );
 };

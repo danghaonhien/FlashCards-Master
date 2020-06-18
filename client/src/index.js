@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router } from "react-router-dom";
 
 import { createStore, applyMiddleware, compose } from "redux";
 import reduxThunk from "redux-thunk";
@@ -25,9 +24,7 @@ const store = createStore(
 
 export default store;
 ReactDOM.render(
-  <Router>
-    <App />
-  </Router>,
+  <App />,
 
   document.getElementById("root")
 );
