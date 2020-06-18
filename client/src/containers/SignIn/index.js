@@ -23,10 +23,10 @@ function SignIn({ signin, authenticated }) {
     signin({ email, password });
   };
 
-  // //Redirect if logged in
-  // if (authenticated) {
-  //   return <Redirect to='/dashboard' />;
-  // }
+  //Redirect if logged in
+  if (authenticated) {
+    return <Redirect to='/dashboard' />;
+  }
 
   return (
     <Fragment>
@@ -60,10 +60,13 @@ function SignIn({ signin, authenticated }) {
                   onChange={(e) => onChange(e)}
                 />
               </Form.Field>
-
-              <Button color='teal' fluid size='large' type='submit'>
-                <Link to='/dashboard'>Sign In</Link>
-              </Button>
+              <Button
+                content='Sign In'
+                color='teal'
+                fluid
+                size='large'
+                type='submit'
+              />
             </Segment>
           </Form>
           <Message>

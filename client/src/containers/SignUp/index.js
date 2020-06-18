@@ -34,9 +34,9 @@ const SignUp = ({ setAlert, signup, authenticated }) => {
     }
   };
 
-  // if (authenticated) {
-  //   return <Redirect to='/dashboard' />;
-  // }
+  if (authenticated) {
+    return <Redirect to='/dashboard' />;
+  }
   return (
     <Fragment>
       <Grid
@@ -91,9 +91,13 @@ const SignUp = ({ setAlert, signup, authenticated }) => {
                 />
               </Form.Field>
 
-              <Button color='teal' fluid size='large' type='submit'>
-                <Link to='/dashboard'>Sign Up</Link>
-              </Button>
+              <Button
+                content='Sign up'
+                color='teal'
+                fluid
+                size='large'
+                type='submit'
+              />
             </Segment>
           </Form>
           <Message>
