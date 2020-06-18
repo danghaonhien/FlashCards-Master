@@ -8,7 +8,7 @@ import "./styles.css";
 import App from "./containers/App";
 // import { loadUser } from "./actions/auth";
 import reducers from "./reducers";
-import setAuthToken from "../../utils/setAuthToken";
+import setAuthToken from "./utils/setAuthToken";
 if (localStorage.token) {
   setAuthToken(localStorage.token);
 }
