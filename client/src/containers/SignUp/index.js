@@ -34,9 +34,9 @@ const SignUp = ({ setAlert, signup, authenticated }) => {
     }
   };
 
-  if (authenticated) {
-    return <Redirect to='/dashboard' />;
-  }
+  // if (authenticated) {
+  //   return <Redirect to='/dashboard' />;
+  // }
   return (
     <Fragment>
       <Grid
