@@ -23,10 +23,10 @@ import Flashcards from "../Flashcards";
 import HandleFlashcard from "../Flashcards/HandleFlashcards";
 import Option from "../Option";
 import { Sticky } from "semantic-ui-react";
-// import setAuthToken from "../../utils/setAuthToken";
-// if (localStorage.token) {
-//   setAuthToken(localStorage.token);
-// }
+import setAuthToken from "../../utils/setAuthToken";
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
 const App = () => {
   return (
     <Fragment>
