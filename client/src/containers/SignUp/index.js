@@ -91,13 +91,9 @@ const SignUp = ({ setAlert, signup, authenticated }) => {
                 />
               </Form.Field>
 
-              <Button
-                content='Sign up'
-                color='teal'
-                fluid
-                size='large'
-                type='submit'
-              />
+              <Button color='teal' fluid size='large' type='submit'>
+                <Link to='/dashboard'>Sign Up</Link>
+              </Button>
             </Segment>
           </Form>
           <Message>

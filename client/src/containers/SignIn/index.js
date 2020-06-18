@@ -60,13 +60,10 @@ function SignIn({ signin, authenticated }) {
                   onChange={(e) => onChange(e)}
                 />
               </Form.Field>
-              <Button
-                content='Sign In'
-                color='teal'
-                fluid
-                size='large'
-                type='submit'
-              />
+
+              <Button color='teal' fluid size='large' type='submit'>
+                <Link to='/dashboard'>Sign In</Link>
+              </Button>
             </Segment>
           </Form>
           <Message>
