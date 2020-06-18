@@ -28,7 +28,6 @@ const Dashboard = ({
   ) : (
     <Fragment>
       <h1>Dashboard </h1>
-
       {profile !== null ? (
         <Fragment>
           <Fragment>

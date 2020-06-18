@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { Menu, Grid, Header } from "semantic-ui-react";
 import PropTypes from "prop-types";
 function Landing({ authenticated }) {
-  // console.log(authenticated);
   if (authenticated) {
     return <Redirect to='/dashboard' />;
   }
