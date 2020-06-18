@@ -7,6 +7,7 @@ import Footer from "../../components/Footer";
 import { Sticky } from "semantic-ui-react";
 import Routes from "../routing/Routes";
 import store from "../../index";
+import { Provider } from "react-redux";
 import { loadUser } from "../../actions/auth";
 const App = () => {
   useEffect(() => {
@@ -14,19 +15,21 @@ const App = () => {
     store.dispatch(loadUser());
   }, []);
   return (
-    <Fragment>
-      <Sticky>
-        {" "}
-        <Navbar />
-      </Sticky>
+    <Provider store={store}>
+      <Fragment>
+        <Sticky>
+          {" "}
+          <Navbar />
+        </Sticky>
 
-      <Switch>
-        <Route exact path='/' component={Landing} />
-        <Route component={Routes} />
-      </Switch>
+        <Switch>
+          <Route exact path='/' component={Landing} />
+          <Route component={Routes} />
+        </Switch>
 
-      <Footer />
-    </Fragment>
+        <Footer />
+      </Fragment>
+    </Provider>
   );
 };
 
