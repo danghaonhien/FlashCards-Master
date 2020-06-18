@@ -21,9 +21,9 @@ const composeEnhancers =
 
 const store = createStore(
   reducers,
-  {
-    auth: { authenticated: localStorage.getItem("token") },
-  },
+  // {
+  //   auth: { authenticated: localStorage.getItem("token") },
+  // },
   composeEnhancers(applyMiddleware(reduxThunk))
 );
 store.dispatch(loadUser());

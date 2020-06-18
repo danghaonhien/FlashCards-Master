@@ -6,26 +6,27 @@ import PropTypes from "prop-types";
 function Landing({ authenticated }) {
   if (authenticated) {
     return <Redirect to='/dashboard' />;
+  } else {
+    return (
+      <Fragment>
+        <Grid
+          textAlign='center'
+          style={{ height: "100vh" }}
+          verticalAlign='middle'
+        >
+          <Grid.Column style={{ maxWidth: 700 }}>
+            <Header as='h2' color='teal' textAlign='center'>
+              Welcome to FlashCard-Master
+            </Header>
+            <h3>Learning English made simple</h3>
+            <Menu widths={5}>
+              <Menu.Item as={Link} to='/signup' content='Get Started' />
+            </Menu>
+          </Grid.Column>
+        </Grid>
+      </Fragment>
+    );
   }
-  return (
-    <Fragment>
-      <Grid
-        textAlign='center'
-        style={{ height: "100vh" }}
-        verticalAlign='middle'
-      >
-        <Grid.Column style={{ maxWidth: 700 }}>
-          <Header as='h2' color='teal' textAlign='center'>
-            Welcome to FlashCard-Master
-          </Header>
-          <h3>Learning English made simple</h3>
-          <Menu widths={5}>
-            <Menu.Item as={Link} to='/signup' content='Get Started' />
-          </Menu>
-        </Grid.Column>
-      </Grid>
-    </Fragment>
-  );
 }
 
 Landing.propTypes = {
