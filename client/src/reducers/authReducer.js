@@ -9,8 +9,8 @@ import {
 } from "../actions/types";
 
 const INITIAL_STATE = {
-  authenticated: null,
   token: localStorage.getItem("token"),
+  authenticated: null,
   loading: true,
   user: null,
 };
@@ -38,7 +38,6 @@ export default function (state = INITIAL_STATE, action) {
     case SIGNIN_FAIL:
     case AUTH_USER_ERROR:
     case SIGNOUT:
-      // case ACCOUNT_DELETED:
       localStorage.removeItem("token");
       return {
         ...state,
