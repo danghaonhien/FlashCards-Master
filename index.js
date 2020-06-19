@@ -4,12 +4,26 @@ const routes = require("./routes");
 
 const app = express();
 // Connect database
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/reduxTodo", {
-  useNewUrlParser: true,
-  useCreateIndex: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false,
-});
+const connectDB = async () => {
+  try {
+    await mongoose.connect(
+      process.env.mongoURI || "mongodb://localhost/reduxTodo",
+      {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useCreateIndex: true,
+        useFindAndModify: false,
+      }
+    );
+    console.log("MongoDB connected...");
+  } catch (err) {
+    console.error(err.message);
+    //Exit process with failure
+    process.exit(1);
+  }
+};
+connectDB();
+
 app.use(express.json());
 // Setup middlewares
 app.use(routes);
