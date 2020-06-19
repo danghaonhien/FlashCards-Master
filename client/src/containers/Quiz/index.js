@@ -14,14 +14,12 @@ class Quiz extends Component {
       await axios.post("/api/score", formValues, {
         headers: { authorization: localStorage.getItem("token") },
       });
-      console.log("iam hit ");
       this.props.getScore();
     } catch (e) {
       dispatch({ type: ADD_SCORE_ERROR, payload: e });
     }
   };
   componentDidMount() {
-    console.log("Inside of componentDidMount");
     this.props.getQuestions();
   }
   renderList = () => {
@@ -67,7 +65,7 @@ class Quiz extends Component {
     }
   };
   render() {
-    console.log(this.props.score.score);
+    // console.log(this.props.score.score);
     return (
       <List celled selection size='huge'>
         {this.renderList()}

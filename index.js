@@ -7,7 +7,7 @@ const app = express();
 const connectDB = async () => {
   try {
     await mongoose.connect(
-      process.env.mongoURI || "mongodb://localhost/reduxTodo",
+      process.env.MONGODB_URI || "mongodb://localhost/reduxTodo",
       {
         useNewUrlParser: true,
         useUnifiedTopology: true,
