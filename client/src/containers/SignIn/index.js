@@ -23,7 +23,7 @@ function SignIn({ signin, authenticated }) {
     signin({ email, password });
   };
 
-  // Redirect if logged in
+  //Redirect if logged in
   if (authenticated) {
     return <Redirect to='/dashboard' />;
   }

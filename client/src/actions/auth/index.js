@@ -19,7 +19,7 @@ export const loadUser = () => async (dispatch) => {
     setAuthToken(localStorage.token);
   }
   try {
-    const res = await axios.get("/api/auth");
+    const res = await axios.get("api/auth");
     dispatch({
       type: USER_LOADED,
       payload: res.data,
@@ -63,6 +63,7 @@ export const signin = ({ email, password }) => async (dispatch) => {
   const config = {
     headers: {
       "Content-Type": "application/json",
+      // authorization: localStorage.getItem("token"),
     },
   };
   const body = JSON.stringify({ email, password });

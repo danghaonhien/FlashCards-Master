@@ -4,15 +4,19 @@ import { connect } from "react-redux";
 import { getCurrentProfile, getProfileById } from "../../actions/profile";
 import DashboardActions from "./DashboardActions";
 import Spinner from "../../components/Spinner/index";
+import ProfileBoard from "../../components/ProfileBoard";
 import { Link } from "react-router-dom";
 import { Button, Divider } from "semantic-ui-react";
 const Dashboard = ({
+  getProfileById,
   getCurrentProfile,
   auth: { user },
   profile: { profile, loading },
+  match,
 }) => {
   useEffect(
     () => {
+      getProfileById(match.params.id);
       getCurrentProfile();
     },
     [getCurrentProfile],
@@ -40,6 +44,9 @@ const Dashboard = ({
             <DashboardActions />
           </Fragment>
           <Divider section />
+          <Fragment>
+            <ProfileBoard profile={profile} />
+          </Fragment>
         </Fragment>
       ) : (
         <Fragment>
@@ -64,4 +71,6 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
   profile: state.profile,
 });
-export default connect(mapStateToProps, { getCurrentProfile })(Dashboard);
+export default connect(mapStateToProps, { getProfileById, getCurrentProfile })(
+  Dashboard
+);

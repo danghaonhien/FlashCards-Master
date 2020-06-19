@@ -25,6 +25,7 @@ function Profile({
           <Link to='/profiles'>
             <Icon name='arrow alternate circle left outline' size='big' />
           </Link>
+
           <div className='profileBox'>
             {auth.authenticated &&
               auth.loading === false &&
