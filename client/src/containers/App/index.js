@@ -50,7 +50,7 @@ const App = () => {
           <Route exact path='/flashcards' component={HandleFlashcard} />
           <Route exact path='/option' component={Option} />
           <PrivateRoute exact path='/dashboard/' component={DashBoard} />
-          <PrivateRoute exact path='/postquiz/' component={PostQuestions} />
+          <Route exact path='/postquiz/' component={PostQuestions} />
           <PrivateRoute
             exact
             path='/create-profile'

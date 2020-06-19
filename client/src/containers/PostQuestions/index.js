@@ -4,14 +4,14 @@ import { Header, Form, Segment, Button } from "semantic-ui-react";
 import { ADD_QUESTION, ADD_QUESTION_ERROR } from "../../actions/types";
 import { compose } from "redux";
 import axios from "axios";
-import requireAuth from "../../hoc/requireAuth";
+// import requireAuth from "../../hoc/requireAuth";
 class PostQuestions extends Component {
   onSubmit = async (formValues, dispatch) => {
     try {
       await axios.post("/api/post", formValues, {
         headers: { authorization: localStorage.getItem("token") },
       });
-      console.log("iam hit ");
+      // console.log("iam hit ");
       dispatch({ type: ADD_QUESTION });
     } catch (e) {
       dispatch({ type: ADD_QUESTION_ERROR, payload: e });
@@ -66,6 +66,6 @@ class PostQuestions extends Component {
 }
 
 export default compose(
-  reduxForm({ form: "postQuestions" }),
-  requireAuth
+  reduxForm({ form: "postQuestions" })
+  // requireAuth
 )(PostQuestions);
