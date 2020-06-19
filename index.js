@@ -10,9 +10,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/reduxTodo", {
   useUnifiedTopology: true,
   useFindAndModify: false,
 });
-// app.get("/", (req, res) => res.send("API running"));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 // Setup middlewares
 app.use(routes);
 require("./services/passport");
