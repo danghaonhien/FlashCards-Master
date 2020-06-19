@@ -45,7 +45,6 @@ class PostQuestions extends Component {
   };
   render() {
     const { handleSubmit } = this.props;
-    console.log(this.props);
     return (
       <>
         <Header
