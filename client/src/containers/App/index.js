@@ -61,6 +61,7 @@ const App = () => {
           <PrivateRoute exact path='/posts/:id' component={Post} />
         </Switch>
       </section>
+
       <Footer />
     </Fragment>
   );

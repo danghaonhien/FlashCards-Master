@@ -51,7 +51,7 @@ class PostQuestions extends Component {
           as='h2'
           color='teal'
           textAlign='center'
-          content='Welcome to do the todo app'
+          content='Create Question'
         />
         <Form size='large' onSubmit={handleSubmit(this.onSubmit)}>
           <Segment stacked>
