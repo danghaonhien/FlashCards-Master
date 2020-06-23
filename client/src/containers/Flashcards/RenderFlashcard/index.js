@@ -9,8 +9,8 @@ export default (props) => {
   } else {
     return props.flashcards.map(({ _id, front, back }) => {
       return (
-        <div key={_id} className='wrapper'>
-          <div className='container'>
+        <div key={_id} className='container'>
+          <div className='wrapper'>
             <div className='flashcard'>
               <input
                 type='checkbox'

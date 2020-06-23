@@ -4,6 +4,7 @@ import { Header, Form, Segment, Button } from "semantic-ui-react";
 import { ADD_QUESTION, ADD_QUESTION_ERROR } from "../../actions/types";
 import { compose } from "redux";
 import axios from "axios";
+import { setAlert } from "../../actions/alert";
 // import requireAuth from "../../hoc/requireAuth";
 class PostQuestions extends Component {
   onSubmit = async (formValues, dispatch) => {
@@ -13,6 +14,7 @@ class PostQuestions extends Component {
       });
       // console.log("iam hit ");
       dispatch({ type: ADD_QUESTION });
+      dispatch(setAlert("Question Created", "success"));
     } catch (e) {
       dispatch({ type: ADD_QUESTION_ERROR, payload: e });
     }

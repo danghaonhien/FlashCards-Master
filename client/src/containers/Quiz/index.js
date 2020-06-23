@@ -28,7 +28,7 @@ class Quiz extends Component {
     } else {
       const { handleSubmit } = this.props;
       return (
-        <form onSubmit={handleSubmit(this.onSubmit)}>
+        <form className='container' onSubmit={handleSubmit(this.onSubmit)}>
           {this.props.allQuestions.map(({ _id, question, answer }, index) => {
             return (
               <Card key={_id} centered>
